@@ -1,0 +1,63 @@
+{
+  "name": "@tsage/sdk",
+  "version": "0.1.0-alpha.0",
+  "description": "Official TypeScript SDK for the TranslatorSage API (TTS, STT, translation, dubbing, voice cloning). Drop-in compatible with ElevenLabs for TTS/STT/voices/dubbing.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./elevenlabs-compat": {
+      "import": "./dist/elevenlabs-compat.js",
+      "types": "./dist/elevenlabs-compat.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/elevenlabs-compat.ts --format esm --dts --clean",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "generate-types": "openapi-typescript ../tsage-api-gateway/openapi.json -o src/_generated/schema.ts"
+  },
+  "keywords": [
+    "translatorsage",
+    "tts",
+    "stt",
+    "dubbing",
+    "voice-cloning",
+    "elevenlabs"
+  ],
+  "author": "TranslatorSage",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kokhp/tsage-sdk-typescript.git"
+  },
+  "homepage": "https://translatorsage.com",
+  "bugs": {
+    "url": "https://github.com/kokhp/tsage-sdk-typescript/issues"
+  },
+  "dependencies": {
+    "openapi-fetch": "^0.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.0",
+    "msw": "^2.3.0",
+    "openapi-typescript": "^7.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
